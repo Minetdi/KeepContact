@@ -10,6 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AccueilComponent } from './accueil/accueil.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { ListeMembresComponent } from './membres/liste-membres/liste-membres.component';
+import { DetailMembreComponent } from './membres/detail-membre/detail-membre.component';
+import { ListesComponent } from './listes/listes.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -17,7 +22,11 @@ import { InscriptionComponent } from './inscription/inscription.component';
     AppComponent,
     NavComponent,
     AccueilComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    ListeMembresComponent,
+    DetailMembreComponent,
+    ListesComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +34,12 @@ import { InscriptionComponent } from './inscription/inscription.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({ 
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+    },
+      )
   ],
   providers: [],
   bootstrap: [AppComponent]

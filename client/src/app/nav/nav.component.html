@@ -5,20 +5,22 @@
     
    
         
-        <ul class="navbar-nav mr-auto" *ngIf="utilisateursCourrants$ | async">
-          <li class="nav-item active">
-            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Connections</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Messages</a>
-          </li>
+        <ul class="navbar-nav mr-auto" >
+          <ng-container *ngIf="compteService.utilisateurCourrant$| async">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/lists" routerLinkActive='active'>Connections</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/members" routerLinkActive='active'>Decouvrir</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/messages" routerLinkActive='active'>Messages</a>
+            </li>
+          </ng-container> 
         </ul>
 
-        <div class="dropdown" *ngIf="utilisateursCourrants$ | async" dropdown>
-          <a class="dropdown-toggle text-light" dropdownToggle>Bienvenu utilisateur</a>
+        <div class="dropdown" *ngIf="(compteService.utilisateurCourrant$| async) as utilisateur" dropdown>
+          <a class="dropdown-toggle text-light" dropdownToggle>Bonjour {{utilisateur.nomUtilisateur | titlecase}}</a>
           <div class="dropdown-menu mt-3" *dropdownMenu>
             <a class="dropdown-item">Modifier profile</a>
             <div class="dropdown-divider"></div>
@@ -26,7 +28,7 @@
           </div>
         </div>
       
-        <form  *ngIf="(utilisateursCourrants$ | async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit) = "connexion()" autocomplete = "off">
+        <form  *ngIf="(compteService.utilisateurCourrant$| async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit) = "connexion()" autocomplete = "off">
                 <input 
                     name = "nomutilisateur"
                     [(ngModel)]="model.nomutilisateur"
@@ -39,7 +41,7 @@
                     class="form-control mr-sm-2" 
                     type="password" 
                     placeholder="mot de passe">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Connexion</button>
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Connexion</button>
         </form>
 
     </div>
