@@ -1,0 +1,49 @@
+<form #registerForm="ngForm" (ngSubmit)="inscription()" autocomplete="off">
+    <br>
+    <br>
+    <br>
+    <h2 class="text-center" style="color:grey"> Inscription</h2>
+    <hr width="100%">
+    <div class="form-group">
+        <input type="text" class="form-control" name="nomutilisateur" [(ngModel)]="model.nomutilisateur" placeholder="Utilisateur">
+    </div>
+    <div class="form-group">
+        <input type="text-center" class="form-control" name="motdepasse" [(ngModel)]="model.motdepasse" placeholder="mot de passe">
+    </div>
+    <div class="form-group">
+        <input type="text-center" class="form-control" name="pays" placeholder="pays">
+    </div>
+    <div class="form-group">
+        <input type="text-center" class="form-control" name="ville" placeholder="ville">
+    </div>
+    <div class="container">
+        <div class="row">
+           <div class='col-sm-6'>
+              <div class="form-group">
+                 <div class='input-group date' id='datetimepicker5'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                 </div>
+              </div>
+           </div>
+           <script type="text/javascript">
+              $(function () {
+                  $('#datetimepicker5').datetimepicker({
+                      defaultDate: "11/1/2013",
+                      disabledDates: [
+                          moment("12/25/2013"),
+                          new Date(2013, 11 - 1, 21),
+                          "11/22/2013 00:53"
+                      ]
+                  });
+              });
+           </script>
+        </div>
+     </div>
+    <div class="form-group text-center">
+        <button class="btn btn-success mr-2" type="submit">Inscription</button>
+        <button class="btn btn-danger mr-2" (click)="annuler()" type="button">Cancel</button>
+    </div>
+</form>

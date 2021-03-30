@@ -1,0 +1,21 @@
+<div class="container mt-5">
+    <div *ngIf="!modeInscription" style='text-align: center;'>
+        <h1>  Retrouvez vos amis </h1>
+            <p class="lead">
+                
+                Partout sur le Globe
+            </p>
+            <div>
+                <button (click)="Inscription()" class="btn btn-primary btn-lg mr-2">Inscription</button>
+                <button class="btn btn-info btn-lg">Apprendre plus</button>
+            </div>
+    </div>
+
+    <div *ngIf="modeInscription" class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <app-inscription [utilisateurAccueil]="utilisateurs" (annulerInscription)="annulerModeInscription($event)"></app-inscription>
+            </div>
+        </div>
+    </div>
+</div>

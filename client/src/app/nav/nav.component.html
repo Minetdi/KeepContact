@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #19989c;">
-  <img src = "../../assets/img/default.png" height="50px" width="60px" align = "left" >
+  <img src = "../../assets/img/default.png" height="100%" width="60px" align = "left" >
     <div class="container">
       <a class="navbar-brand" href="#"> KEEP CONTACT  </a>
     
    
         
-        <ul class="navbar-nav mr-auto" *ngIf="connecte">
+        <ul class="navbar-nav mr-auto" *ngIf="utilisateursCourrants$ | async">
           <li class="nav-item active">
             <a class="nav-link active" aria-current="page" href="#">Accueil</a>
           </li>
@@ -15,35 +15,32 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Messages</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"  href="#">Deconnection</a>
-          </li>
         </ul>
 
-        <div class="dropdown" *ngIf="connecte" dropdown>
-          <a class="dropdown-toggle text-light">Bienvenu utilisateur</a>
-          <div class="dropdown-menu">
+        <div class="dropdown" *ngIf="utilisateursCourrants$ | async" dropdown>
+          <a class="dropdown-toggle text-light" dropdownToggle>Bienvenu utilisateur</a>
+          <div class="dropdown-menu mt-3" *dropdownMenu>
             <a class="dropdown-item">Modifier profile</a>
-            <a class="dropdown-item" (click)="deconnexion()"></a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="deconnexion()">Deconnexion</a>
           </div>
         </div>
       
-        <form  *ngIf="!connecte" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit) = "connexion()" autocomplete = "off">
+        <form  *ngIf="(utilisateursCourrants$ | async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit) = "connexion()" autocomplete = "off">
                 <input 
-                    name = "utilisateur"
-                    [(ngModel)]="model.utilisateur"
+                    name = "nomutilisateur"
+                    [(ngModel)]="model.nomutilisateur"
                     class="form-control mr-sm-2" 
                     type="text" 
-                    placeholder="Nom utilisateur">
+                    placeholder="utilisateur">
                 <input 
                     name="motdepasse"
                     [(ngModel)]="model.motdepasse"
                     class="form-control mr-sm-2" 
                     type="password" 
-                    placeholder="Mot de passe">
+                    placeholder="mot de passe">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Connexion</button>
         </form>
 
-            
     </div>
   </nav>
